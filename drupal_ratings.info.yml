@@ -1,0 +1,10 @@
+name: 'Star Rating'
+type: module
+description: 'Allows users to rate content using form-based rating system'
+package: Star Rating Forms
+version: 1.0
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:block
+  - drupal:node
+  - drupal:field

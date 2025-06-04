@@ -1,0 +1,9 @@
+star_rating_styles:
+  version: 1.1
+  js:
+    js/star-rating.js: {}
+  css:
+    theme:
+      css/styles.css: {}
+
+    

@@ -1,0 +1,28 @@
+drupal_ratings.simple_form:
+  path: '/simple-form'
+  defaults:
+    _form: '\Drupal\drupal_ratings\Form\SimpleForm'
+    _title: 'Simple Form'
+  requirements:
+    _permission: 'access content'
+drupal_ratings.rating_form:
+  path: '/star-rating-form'
+  defaults:
+    _form: '\Drupal\drupal_ratings\Form\StarRatingForm'
+    _title: 'Star Rating Form'
+  requirements:
+    _permission: 'access content'
+drupal_ratings.test:
+  path: '/star-rating/test'
+  defaults:
+    _controller: '\Drupal\drupal_ratings\Controller\TestController::test'
+    _title: 'Rating Message Display'
+  requirements:
+    _permission: 'access content'
+drupal_ratings.settings_form:
+  path: '/admin/config/drupal-rating/settings'
+  defaults:
+    _form: '\Drupal\drupal_ratings\Form\StarRatingSettingsForm'
+    _title: 'Star Rating Settings'
+  requirements:
+    _permission: 'administer site configuration'

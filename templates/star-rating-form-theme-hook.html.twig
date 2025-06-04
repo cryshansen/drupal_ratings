@@ -1,0 +1,36 @@
+<!-- star-rating-form-theme-hook -->
+
+<div class="row block">
+	<div id="rating" class="whiteSpace">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 centerRateCol">
+					<div id="half-stars-example" class="col-sm-4 centerRate">
+						<div><h5 class="h5PadBot">Do you like the contribution? Rate it!</h5>{{ form.info }}</div>
+						<div id="status"></div>
+
+
+						<form{{ form.attributes }}>
+						  <div>
+							{{ form.name.label }}
+							{{ form.name }}
+						  </div>
+						  <div>
+							{{ form.rating.label }}
+							{{ form.rating }}
+						  </div>
+						  <div>
+							{{ form.feedback.label }}
+							{{ form.feedback }}
+						  </div>
+						  <div>
+							{{ form.submit }}
+						  </div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

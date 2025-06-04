@@ -1,0 +1,60 @@
+<!-- emtp-star-rating-form-theme-hook -->
+
+<div class="row block">
+	<div id="rating" class="whiteSpace">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 centerRateCol">
+					<div id="half-stars-example" class="col-sm-4 centerRate">
+						<div><h5 class="h5PadBot">Do you like the contribution? Rate it!</h5>{{ form.info }}</div>
+						<div id="status"></div>
+						<form{{ attributes }}> <!-- star-rating-form  -->
+							<div class="rating-group">
+				 
+								
+								{% if form.rating %}
+								
+									<!-- handle the zero marker as its sorted differently and cant be rated -->
+									<input class="rating__input rating__input--none" name="{{ form.rating['#name'] }}" id="rating2-0" value="0" type="radio" checked="checked">
+									<label aria-label="0 stars" class="rating__label" for="rating2-0"></label>
+									
+									{% set last_key = form.rating['#options']|keys|last %}
+									
+									{% for key, item in form.rating['#options'] %}
+										{% set onclick_event = key == last_key ? 'handleRatingClick(' ~ key ~ ')' : 'getActive(' ~ key ~ ')' %}
+										{% set has_decimal_class = key matches '/\./' ? 'rating__label--half' : '' %}
+										
+										
+										 {% set is_half_star = key matches '/\.5$/' %}
+										 {% set label_class = is_half_star ? 'rating__label rating__label--half' : 'rating__label' %}
+										 {% set icon_class = is_half_star ? 'fa-star-half' : 'fa-star' %}
+										 
+										 
+										  <label class="{{ label_class }}" for="rating-{{ key }}" aria-label="{{ key }} stars">
+											<i class="rating__icon rating__icon--star fa {{ icon_class }}"></i>
+										  </label>
+
+										<input class="rating__input" type="radio" id="rating-{{ key }}" name="{{ form.rating['#name'] }}" value="{{ key }}" 
+											{% if form.rating['#default_value'] == key %}checked="checked"{% endif %} >
+										<!--  onclick="{{ onclick_event }}"  star-rating-form  -->
+										
+									{% endfor %}
+
+								{% endif %}
+
+								
+
+							</div>
+							<div id="message" class="d-none"></div>
+							<div id="rateFeedback" class="feedback d-none">
+								<textarea name="{{  form.feedback['#name']  }}" id="{{ form.feedback['#attributes'].id }}" class="{{ form.feedback['#attributes'].class|join(' ') }}" placeholder="{{ form.feedback['#attributes'].placeholder }}" rows="{{ form.feedback['#attributes'].rows }}" cols="{{ form.feedback['#attributes'].cols }}">{{ form.feedback['#value'] }}</textarea>									
+							</div>
+
+								{{ form.actions.submit }}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

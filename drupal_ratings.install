@@ -1,0 +1,96 @@
+<?php
+/**
+ * @file
+ * Install file for drupal_ratings module.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\Database\Driver\mysql\CreateTable;
+use Drupal\Core\Database\Schema\Schema;
+
+/**
+ * Implements hook_schema().
+ */
+function drupal_ratings_schema() {
+  $schema['drupal_ratings'] = [
+    'description' => 'Stores the star ratings and feedback.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique rating ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'description' => 'Email of the user who rated.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'node_id' => [
+        'description' => 'ID of the rated document (node ID).',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'content_type' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'rating' => [
+        'description' => 'Rating value.',
+        'type' => 'float',
+        'not null' => TRUE,
+      ],
+      'feedback' => [
+        'description' => 'User feedback.',
+        'type' => 'text',
+        'not null' => FALSE,
+      ],
+      'adr_ip' => [
+        'description' => 'IP address of the user.',
+        'type' => 'varchar',
+        'length' => 45,
+        'not null' => FALSE,
+      ],
+      'created' => [
+        'description' => 'Timestamp when the rating was created.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'node_id' => ['node_id'],
+      'email' => ['email'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function drupal_ratings_install() {
+  // Perform any installation tasks here.
+  // For example, creating the table defined in hook_schema().
+  drupal_install_schema('drupal_ratings');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function drupal_ratings_uninstall() {
+  // Clean up when the module is uninstalled.
+  drupal_uninstall_schema('drupal_ratings');
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function emtp_star_rating_update_8001() {
+  // Perform database updates if necessary.
+}

@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Template for the star rating form.
+ */  
+#}	
+{# templates/emtp-star-rating-form-theme.html.twig #}	
+<!-- emtp-star-rating-form-theme-hook -->
+
+<div class="row block">
+	<div id="rating" class="whiteSpace">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 centerRateCol">
+					<div id="half-stars-example" class="col-sm-4 centerRate">
+						<div id="status"></div>
+						<form{{ form.attributes }}>
+						  <div> {{ form.info }} </div>
+						  {{ form.form_id }}
+						  {{ form.form_build_id }}
+						  {{ form.form_token }}
+						  {{ form.adr_ip }}  
+						  {{ form.email }} 
+						  {{ form.hash_hub_id }} 						  
+						  {{ form.content_type }}  
+						  {{ form.document_id }}
+						<div class="rating-group">
+						  <input class="rating__input rating__input--none" checked name="rating" id="rating2-0" value="0" type="radio">
+						  <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
+						  {% for key, value in form.rating['#options'] %}
+							{% set formatted_key = key|replace({'_': ''}) %}
+							{% if '_' in key %}
+							  <!-- Half-star rating -->
+							  <label aria-label="{{ value }} stars" class="rating__label rating__label--half" for="rating2-{{ formatted_key }}">
+								<i class="rating__icon rating__icon--star fa fa-star-half"></i>
+							  </label>
+							  <input class="rating__input" name="rating" id="rating2-{{ formatted_key }}" value="{{ value }}" type="radio" onclick="getActive()">
+							{% else %}
+							  <!-- Full-star rating -->
+							  <label aria-label="{{ value }} stars" class="rating__label" for="rating2-{{ formatted_key }}">
+								<i class="rating__icon rating__icon--star fa fa-star"></i>
+							  </label>
+							  <input class="rating__input" name="rating" id="rating2-{{ formatted_key }}" value="{{ value }}" type="radio" onclick="getActive()">
+							{% endif %}
+						  {% endfor %}
+						</div>
+						<div id="message" class="hide"></div>
+						<div id="rateFeedback" class="feedback hide">
+								  
+						  {{ form.feedback }}
+						</div>
+						<div>
+						  {{ form.submit }}
+						</div>
+					  </form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

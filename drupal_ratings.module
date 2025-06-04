@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Main module file for the emtp blocks module.
+ */
+
+
+/**
+ * Implements hook_theme().
+
+ */
+function drupal_ratings_theme($existing, $type, $theme, $path) {
+    $module_path = \Drupal::service('extension.list.module')->getPath('drupal_ratings');
+
+  return [
+    'star_rating_form_theme' => [
+      'render element' => 'form',
+      'template' => 'star-rating-form-theme',
+      'path' => $module_path. '/templates',
+    ],
+    'simple_text_form_theme' => [
+      'render element' => 'form',
+      'template' => 'simple-text-form-theme',
+      'path' => $module_path . '/templates',
+    ],
+    
+  ];
+}
